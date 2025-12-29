@@ -1,0 +1,33 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Security - NEVER COMMIT
+*.key
+*.pem
+*.keystore
+.env
+.env.*
+!.env.template
+secrets/
+config/production.cfg
+export_credentials.cfg
+
+# Build outputs
+*.aab
+*.apk
+*.ipa
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Temporary
+*.tmp
+*.log
