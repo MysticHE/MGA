@@ -23,6 +23,9 @@ func _initialize_game() -> void:
 	print("[Main] EncryptionManager loaded: ", EncryptionManager != null)
 	print("[Main] ConsentManager loaded: ", ConsentManager != null)
 	print("[Main] SaveManager loaded: ", SaveManager != null)
+	# GameDatabase checked at runtime to avoid parse-time issues
+	var game_db: Node = get_node_or_null("/root/GameDatabase")
+	print("[Main] GameDatabase loaded: ", game_db != null)
 
 	# CRITICAL: Check consent BEFORE any data operations
 	if ConsentManager.needs_consent():

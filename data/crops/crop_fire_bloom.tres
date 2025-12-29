@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/crop_data.gd" id="1_crop"]
+
+[resource]
+script = ExtResource("1_crop")
+id = "crop_fire_bloom"
+display_name = "Fire Bloom"
+description = "A fiery crop that thrives with Fire element heroes. Moderate growth, good yield."
+tier = 1
+element = 0
+growth_time_seconds = 600
+wither_time_seconds = 2400
+stages = 4
+base_gem_yield = 35
+gem_yield_variance = 0.2
+bonus_drop_chance = 0.08
+bonus_drop_id = "item_fire_essence"
+unlock_level = 3
+seed_cost = 5
+requires_premium = false
+preferred_hero_elements = [0]
+element_bonus = 0.3

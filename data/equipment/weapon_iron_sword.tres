@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/equipment_data.gd" id="1_equip"]
+
+[resource]
+script = ExtResource("1_equip")
+id = "weapon_iron_sword"
+display_name = "Iron Sword"
+description = "A sturdy iron sword. Basic but reliable."
+slot = 0
+rarity = 0
+required_level = 1
+hp_bonus = 0
+atk_bonus = 15
+def_bonus = 0
+spd_bonus = 5
+crit_rate_bonus = 0.02
+crit_dmg_bonus = 0.0
+max_enhance_level = 10
+enhance_stat_multiplier = 0.08

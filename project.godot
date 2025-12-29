@@ -23,6 +23,7 @@ EventBus="*res://src/autoload/event_bus.gd"
 EncryptionManager="*res://src/autoload/encryption_manager.gd"
 ConsentManager="*res://src/autoload/consent_manager.gd"
 SaveManager="*res://src/autoload/save_manager.gd"
+GameDatabase="*res://src/autoload/game_database.gd"
 
 [display]
 

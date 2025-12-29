@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="HeroData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/hero_data.gd" id="1_hero"]
+
+[resource]
+script = ExtResource("1_hero")
+id = "hero_forest_guardian"
+display_name = "Forest Guardian"
+description = "An ancient protector of nature. High defense and crowd control abilities."
+rarity = 1
+element = 2
+role = 0
+base_hp = 1200
+base_atk = 55
+base_def = 75
+base_spd = 85
+base_crit_rate = 0.05
+base_crit_dmg = 1.4
+hp_growth = 120.0
+atk_growth = 5.5
+def_growth = 7.5
+spd_growth = 0.5
+skill_ids = ["skill_root_bind", "skill_bark_shield"]
+is_limited = false
+farm_gem_bonus = 0.1
+preferred_crop_type = "crop_gem_sprout"

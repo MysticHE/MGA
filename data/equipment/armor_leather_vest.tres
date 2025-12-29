@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/equipment_data.gd" id="1_equip"]
+
+[resource]
+script = ExtResource("1_equip")
+id = "armor_leather_vest"
+display_name = "Leather Vest"
+description = "Light armor that provides basic protection without hindering movement."
+slot = 1
+rarity = 0
+required_level = 1
+hp_bonus = 50
+atk_bonus = 0
+def_bonus = 10
+spd_bonus = 0
+crit_rate_bonus = 0.0
+crit_dmg_bonus = 0.0
+max_enhance_level = 10
+enhance_stat_multiplier = 0.08

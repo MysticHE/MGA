@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/crop_data.gd" id="1_crop"]
+
+[resource]
+script = ExtResource("1_crop")
+id = "crop_crystal_bloom"
+display_name = "Crystal Bloom"
+description = "A refined crop that takes longer to grow but yields premium gems."
+tier = 1
+element = 5
+growth_time_seconds = 900
+wither_time_seconds = 2700
+stages = 4
+base_gem_yield = 50
+gem_yield_variance = 0.2
+bonus_drop_chance = 0.1
+bonus_drop_id = "item_crystal_shard"
+unlock_level = 5
+seed_cost = 10
+requires_premium = false
+element_bonus = 0.25

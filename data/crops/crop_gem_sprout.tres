@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/crop_data.gd" id="1_crop"]
+
+[resource]
+script = ExtResource("1_crop")
+id = "crop_gem_sprout"
+display_name = "Gem Sprout"
+description = "A basic crop that grows quickly and yields modest gems. Perfect for beginners."
+tier = 0
+element = 5
+growth_time_seconds = 300
+wither_time_seconds = 1800
+stages = 4
+base_gem_yield = 15
+gem_yield_variance = 0.15
+bonus_drop_chance = 0.05
+unlock_level = 1
+seed_cost = 0
+requires_premium = false
+element_bonus = 0.2

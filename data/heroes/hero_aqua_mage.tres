@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="HeroData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/hero_data.gd" id="1_hero"]
+
+[resource]
+script = ExtResource("1_hero")
+id = "hero_aqua_mage"
+display_name = "Aqua Mage"
+description = "A mystical spellcaster who commands the tides. Provides healing and damage support."
+rarity = 3
+element = 1
+role = 2
+base_hp = 720
+base_atk = 75
+base_def = 35
+base_spd = 95
+base_crit_rate = 0.08
+base_crit_dmg = 1.6
+hp_growth = 72.0
+atk_growth = 7.5
+def_growth = 3.5
+spd_growth = 0.8
+skill_ids = ["skill_tidal_wave", "skill_healing_rain"]
+is_limited = false
+farm_gem_bonus = 0.08
+preferred_crop_type = "crop_water_lily"

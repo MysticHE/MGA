@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="HeroData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/hero_data.gd" id="1_hero"]
+
+[resource]
+script = ExtResource("1_hero")
+id = "hero_flame_knight"
+display_name = "Flame Knight"
+description = "A valiant warrior wielding the power of fire. Excels at dealing sustained damage to enemies."
+rarity = 2
+element = 0
+role = 1
+base_hp = 850
+base_atk = 95
+base_def = 45
+base_spd = 105
+base_crit_rate = 0.1
+base_crit_dmg = 1.5
+hp_growth = 85.0
+atk_growth = 9.5
+def_growth = 4.5
+spd_growth = 1.0
+skill_ids = ["skill_flame_slash", "skill_fire_aura"]
+is_limited = false
+farm_gem_bonus = 0.05
+preferred_crop_type = "crop_fire_bloom"
