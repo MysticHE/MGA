@@ -20,6 +20,8 @@ run/main_scene="res://scenes/main.tscn"
 [autoload]
 
 EventBus="*res://src/autoload/event_bus.gd"
+EncryptionManager="*res://src/autoload/encryption_manager.gd"
+ConsentManager="*res://src/autoload/consent_manager.gd"
 
 [display]
 

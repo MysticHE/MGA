@@ -1,0 +1,125 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8nvq2hf3k5xp"]
+
+[ext_resource type="Script" path="res://src/ui/popups/consent_dialog.gd" id="1_consent"]
+
+[node name="ConsentDialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_consent")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -350.0
+offset_right = 400.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Privacy Settings"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "We respect your privacy. Please choose which data
+collection features you'd like to enable.
+
+Essential data is required for the game to function.
+All other options are completely optional."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PrivacyPolicyButton" type="LinkButton" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Read Privacy Policy"
+underline = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ToggleContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="AnalyticsToggle" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer/ToggleContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Analytics - Help us improve the game"
+
+[node name="CrashToggle" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer/ToggleContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Crash Reporting - Help us fix bugs"
+
+[node name="MarketingToggle" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer/ToggleContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Marketing - Receive news and offers"
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="EssentialOnlyButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(220, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Essential Only"
+
+[node name="AcceptAllButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(220, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Accept All"
+
+[node name="ConfirmButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(220, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Confirm Selection"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/PrivacyPolicyButton" to="." method="_on_privacy_policy_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/ButtonContainer/EssentialOnlyButton" to="." method="_on_essential_only_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/ButtonContainer/AcceptAllButton" to="." method="_on_accept_all_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/ButtonContainer/ConfirmButton" to="." method="_on_confirm_selection_pressed"]
