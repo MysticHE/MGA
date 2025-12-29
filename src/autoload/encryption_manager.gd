@@ -21,12 +21,19 @@ func _initialize_encryption_key() -> void:
 	# Derive key using multiple SHA-256 iterations
 	var key_bytes: PackedByteArray = key_material.to_utf8_buffer()
 	for i in range(KEY_ITERATIONS):
-		key_bytes = key_bytes.sha256_buffer()
+		key_bytes = _sha256_hash(key_bytes)
 
 	# Use first 32 bytes for AES-256
 	_encryption_key = key_bytes.slice(0, 32)
 	_is_initialized = true
 	print("[EncryptionManager] Initialized with device-specific key")
+
+## Computes SHA-256 hash of data using HashingContext
+func _sha256_hash(data: PackedByteArray) -> PackedByteArray:
+	var ctx: HashingContext = HashingContext.new()
+	ctx.start(HashingContext.HASH_SHA256)
+	ctx.update(data)
+	return ctx.finish()
 
 ## Gets a unique device identifier
 func _get_device_identifier() -> String:

@@ -5,6 +5,14 @@ extends Control
 
 const PRIVACY_POLICY_URL: String = "https://gemharvestidle.com/privacy"
 
+## Local reference to consent types (avoids autoload parse issues)
+enum ConsentType {
+	ESSENTIAL,
+	ANALYTICS,
+	CRASH_REPORTING,
+	MARKETING,
+}
+
 ## Emitted when user submits their consent choices
 signal consent_submitted(consents: Dictionary)
 
@@ -36,30 +44,30 @@ func hide_dialog() -> void:
 ## Called when "Essential Only" button is pressed
 func _on_essential_only_pressed() -> void:
 	var consents: Dictionary = {
-		ConsentManager.ConsentType.ESSENTIAL: true,
-		ConsentManager.ConsentType.ANALYTICS: false,
-		ConsentManager.ConsentType.CRASH_REPORTING: false,
-		ConsentManager.ConsentType.MARKETING: false,
+		ConsentType.ESSENTIAL: true,
+		ConsentType.ANALYTICS: false,
+		ConsentType.CRASH_REPORTING: false,
+		ConsentType.MARKETING: false,
 	}
 	_submit_consent(consents)
 
 ## Called when "Accept All" button is pressed
 func _on_accept_all_pressed() -> void:
 	var consents: Dictionary = {
-		ConsentManager.ConsentType.ESSENTIAL: true,
-		ConsentManager.ConsentType.ANALYTICS: true,
-		ConsentManager.ConsentType.CRASH_REPORTING: true,
-		ConsentManager.ConsentType.MARKETING: true,
+		ConsentType.ESSENTIAL: true,
+		ConsentType.ANALYTICS: true,
+		ConsentType.CRASH_REPORTING: true,
+		ConsentType.MARKETING: true,
 	}
 	_submit_consent(consents)
 
 ## Called when "Confirm Selection" button is pressed
 func _on_confirm_selection_pressed() -> void:
 	var consents: Dictionary = {
-		ConsentManager.ConsentType.ESSENTIAL: true,
-		ConsentManager.ConsentType.ANALYTICS: analytics_toggle.button_pressed,
-		ConsentManager.ConsentType.CRASH_REPORTING: crash_toggle.button_pressed,
-		ConsentManager.ConsentType.MARKETING: marketing_toggle.button_pressed,
+		ConsentType.ESSENTIAL: true,
+		ConsentType.ANALYTICS: analytics_toggle.button_pressed,
+		ConsentType.CRASH_REPORTING: crash_toggle.button_pressed,
+		ConsentType.MARKETING: marketing_toggle.button_pressed,
 	}
 	_submit_consent(consents)
 
