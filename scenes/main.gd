@@ -22,6 +22,7 @@ func _initialize_game() -> void:
 	print("[Main] EventBus loaded: ", EventBus != null)
 	print("[Main] EncryptionManager loaded: ", EncryptionManager != null)
 	print("[Main] ConsentManager loaded: ", ConsentManager != null)
+	print("[Main] SaveManager loaded: ", SaveManager != null)
 
 	# CRITICAL: Check consent BEFORE any data operations
 	if ConsentManager.needs_consent():
@@ -35,12 +36,22 @@ func _initialize_game() -> void:
 	if ConsentManager.has_consent(ConsentManager.ConsentType.ANALYTICS):
 		_test_encryption()
 
+	# Load or create save data
 	_update_loading_status("Loading game data...")
 	await get_tree().process_frame
+	await _load_or_create_save()
 
-	# TODO: Add save loading
-	# TODO: Add offline earnings calculation
-	# TODO: Transition to farm screen
+	# Calculate offline earnings if returning player
+	if SaveManager.current_save != null:
+		var offline_seconds: int = SaveManager.current_save.get_offline_seconds()
+		if offline_seconds > 60:  # Only show if away for > 1 minute
+			_update_loading_status("Calculating offline rewards...")
+			await get_tree().process_frame
+			_show_offline_earnings(offline_seconds)
+			SaveManager.current_save.mark_online()
+
+	# Start auto-save
+	SaveManager.start_auto_save()
 
 	_update_loading_status("Gem Harvest Idle started!")
 	print("[Main] Initialization complete")
@@ -91,3 +102,41 @@ func _update_loading_status(message: String) -> void:
 	if loading_label:
 		loading_label.text = message
 	print("[Main] ", message)
+
+## Loads existing save or creates new one
+func _load_or_create_save() -> void:
+	if SaveManager.has_save_file():
+		print("[Main] Loading existing save...")
+		var success: bool = SaveManager.load_game()
+		if success:
+			print("[Main] Save loaded successfully")
+			var save: SaveData = SaveManager.current_save
+			print("[Main] Player level: ", save.player_level, " | Gems: ", save.gems)
+		else:
+			push_warning("[Main] Failed to load save, creating new one")
+			SaveManager.create_new_save()
+	else:
+		print("[Main] No save found, creating new save...")
+		SaveManager.create_new_save()
+
+## Calculates and displays offline earnings
+func _show_offline_earnings(offline_seconds: int) -> void:
+	var hours: int = offline_seconds / 3600
+	var minutes: int = (offline_seconds % 3600) / 60
+
+	print("[Main] Welcome back! You were away for ", hours, "h ", minutes, "m")
+
+	# Calculate offline gem earnings (basic formula for now)
+	# TODO: Integrate with actual farm gem generation rate
+	var base_gem_rate: int = 10  # gems per minute (placeholder)
+	var max_offline_minutes: int = 480  # 8 hours max
+	var actual_minutes: int = mini(offline_seconds / 60, max_offline_minutes)
+	var offline_gems: int = actual_minutes * base_gem_rate
+
+	if offline_gems > 0 and SaveManager.current_save != null:
+		SaveManager.current_save.gems += offline_gems
+		SaveManager.current_save.stats["total_gems_earned"] = \
+			SaveManager.current_save.stats.get("total_gems_earned", 0) + offline_gems
+		SaveManager.mark_dirty()
+		print("[Main] Offline earnings: +", offline_gems, " gems")
+		EventBus.idle_gems_generated.emit(offline_gems)

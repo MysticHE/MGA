@@ -153,11 +153,20 @@ signal show_toast(message: String, toast_type: String)
 # SAVE/SYNC SIGNALS
 # ═══════════════════════════════════════════════════════════════════════════════
 
+## Emitted when new save is created
+signal save_created()
+
 ## Emitted when save is completed
 signal save_completed(success: bool)
 
-## Emitted when save is loaded
+## Emitted when save is loaded with data
+signal save_loaded(save_data: Resource)
+
+## Emitted when save is loaded (success only)
 signal load_completed(success: bool)
+
+## Emitted when offline earnings are calculated
+signal offline_earnings_calculated(offline_seconds: int)
 
 ## Emitted when server sync completes
 signal sync_completed(success: bool)
